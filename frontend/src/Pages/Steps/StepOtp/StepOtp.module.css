@@ -1,0 +1,18 @@
+.cardWrapper{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-direction: column; */
+    margin-top: 6rem;
+}
+
+.actionButton{
+    margin-top: 40px;
+}
+
+.paragraph{
+    color:#a2a0a0;
+    width: 70%;
+    margin-top: 20px;
+    text-align: center;
+}

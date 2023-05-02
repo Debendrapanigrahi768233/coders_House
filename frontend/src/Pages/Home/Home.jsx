@@ -7,19 +7,19 @@ import Button from '../../components/shared/Button/Button'
 const Home = () => {
   const reactNavigator=useNavigate()
   const startRegister=()=>{
-    console.log('hello')
-    reactNavigator('/register')
+    // console.log('hello')
+    reactNavigator('/authenticate')
   }
   return (
     <div className={styles.classWrapper}>
         <Card title='Welcome to Codershouse!' logo='logo'>
             <p className={styles.text}>A place where collaborators can talk with each other in real time and execute projects together</p>
-            <Button text='Get your username' icon='arrow' onClick={startRegister}></Button>
+            <Button text='Lets Go' icon='arrow' onClick={startRegister}></Button>
             <div style={{marginTop:'5px'}}>
                 <span style={{fontWeight: '300'}}>Already have an accont? </span>
-                <Link style={{textDecoration:'none',marginLeft:'5px'}} to='/login'>
+                {/* <Link style={{textDecoration:'none',marginLeft:'5px'}} to='/login'>
                     <span>Login</span>
-                </Link>
+                </Link> */}
             </div>
         </Card>
     </div>
