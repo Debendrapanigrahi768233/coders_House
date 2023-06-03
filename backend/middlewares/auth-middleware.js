@@ -13,8 +13,8 @@ module.exports = async (req, res, next) => {
       throw new Error();
     }
     req.user = userdata;
+    next();
   } catch (err) {
     res.status(401).json({ message: "invalid token" });
   }
-  next();
 };

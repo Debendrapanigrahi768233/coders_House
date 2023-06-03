@@ -6,13 +6,20 @@ import Authenticate from "./Pages/Authenticate/Authenticate";
 import Activate from "./Pages/Activate/Activate";
 import Rooms from "./Pages/Rooms/Rooms";
 import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useLoadingWithRefresh } from "./hooks/useLoadingWithRefresh";
+import Loader from "./components/shared/Loader/Loader";
+import Room from "./Pages/Room/Room";
 // const isauth=false;
 // const user={
 //   activated:false
 // }
 
 function App() {
-  return (
+  const { loading } = useLoadingWithRefresh();
+  return loading ? (
+    <Loader message="loading" />
+  ) : (
     <BrowserRouter>
       <Navigation />
       <Routes>
@@ -21,7 +28,7 @@ function App() {
         <Route
           path="/"
           element={
-            <GuestRoute redirectTo="/rooms">
+            <GuestRoute>
               <Home />
             </GuestRoute>
           }
@@ -32,7 +39,7 @@ function App() {
         <Route
           path="/authenticate"
           element={
-            <GuestRoute redirectTo="/rooms">
+            <GuestRoute>
               <Authenticate />
             </GuestRoute>
           }
@@ -42,7 +49,7 @@ function App() {
         <Route
           path="/activate"
           element={
-            <SemiProtectedRoute redirectTo="/">
+            <SemiProtectedRoute>
               <Activate />
             </SemiProtectedRoute>
           }
@@ -53,8 +60,18 @@ function App() {
         <Route
           path="/rooms"
           element={
-            <ProtectedRoute redirectTo="/">
+            <ProtectedRoute>
               <Rooms />
+            </ProtectedRoute>
+          }
+          exact
+        />
+
+        <Route
+          path="/room/:id"
+          element={
+            <ProtectedRoute>
+              <Room />
             </ProtectedRoute>
           }
           exact
@@ -64,15 +81,15 @@ function App() {
   );
 }
 
-const GuestRoute = ({ children, redirectTo }) => {
+const GuestRoute = ({ children }) => {
   const { isauth } = useSelector((state) => state.auth);
-  return isauth ? <Navigate to={redirectTo} /> : children;
+  return isauth ? <Navigate to="/rooms" /> : children;
 };
 
 const SemiProtectedRoute = ({ children, redirectTo }) => {
   const { user, isauth } = useSelector((state) => state.auth);
   return !isauth ? (
-    <Navigate to={redirectTo} />
+    <Navigate to="/" />
   ) : isauth && !user.activated ? (
     children
   ) : (
@@ -83,7 +100,7 @@ const SemiProtectedRoute = ({ children, redirectTo }) => {
 const ProtectedRoute = ({ children, redirectTo }) => {
   const { user, isauth } = useSelector((state) => state.auth);
   return !isauth ? (
-    <Navigate to={redirectTo} />
+    <Navigate to="/" />
   ) : isauth && !user.activated ? (
     <Navigate to="/activate" />
   ) : (
@@ -93,26 +110,26 @@ const ProtectedRoute = ({ children, redirectTo }) => {
 
 export default App;
 
-{
-  /* <GuestRoute path="/authenticate" element={<Authenticate/>} exact/> */
-}
-
-// const GuestRoute=({children,...rest})=>{
-//   return(
-//     <Route {...rest}
-//     render={({location})=>{
-//       return isauth?(
-//         <Navigate  to='/rooms'/>
-//       ):(
-//         children
-//       )
-//     }}
-
-//     ></Route>
-//   )
+// {
+//   /* <GuestRoute path="/authenticate" element={<Authenticate/>} exact/> */
 // }
 
-{
-  /* <Route path="/register" element={<Register/>} exact/>
-      <Route path="/login" element={<Login/>} exact/> */
-}
+// // const GuestRoute=({children,...rest})=>{
+// //   return(
+// //     <Route {...rest}
+// //     render={({location})=>{
+// //       return isauth?(
+// //         <Navigate  to='/rooms'/>
+// //       ):(
+// //         children
+// //       )
+// //     }}
+
+// //     ></Route>
+// //   )
+// // }
+
+// {
+//   /* <Route path="/register" element={<Register/>} exact/>
+//       <Route path="/login" element={<Login/>} exact/> */
+// }

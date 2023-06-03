@@ -8,3 +8,37 @@
     text-decoration: none;
     color: #fff;
 }
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logoutButton{
+    background-color: transparent;
+    color:rgba(251, 222, 5, 0.984);
+    border: 0.8px solid yellow;
+    border-radius: 5px;
+    outline: none;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.navright{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.avatar,.userName{
+    margin-right: 10px;
+}
+
+.avatar{
+    border-radius: 50%;
+    border: 3px solid blue;
+    object-fit: cover;
+}

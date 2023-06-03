@@ -6,6 +6,7 @@ const UserDto = require("../dtos/user-dto");
 class ActivateController {
   //this is class method
   async activate(req, res) {
+    console.log("In activate");
     //activation logic
     const { name, avatar } = req.body;
     if (!name || !avatar) {
@@ -27,7 +28,7 @@ class ActivateController {
     } catch (err) {
       res.status(500).json({ message: "could not process image" });
     }
-
+    console.log("In activate");
     const userId = req.user._id;
     console.log("userId", userId);
     try {

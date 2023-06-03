@@ -17,6 +17,7 @@
     "jimp": "^0.22.7",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.5",
+    "socket.io": "^4.6.1",
     "twilio": "^4.10.0"
   },
   "devDependencies": {

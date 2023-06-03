@@ -1,6 +1,9 @@
+
 html {
-  box-sizing: border-box;
   font-size: 16px;
+}
+* {
+  box-sizing: border-box;
 }
 
 body,
@@ -38,7 +41,7 @@ font-family: 'Nunito', sans-serif;
 .container{
   width:1200px;
   max-width: 90%;
-  margin:0 auto
+  margin:30px auto
 }
 
 
@@ -47,4 +50,11 @@ font-family: 'Nunito', sans-serif;
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - 140px);
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
 }

@@ -11,9 +11,12 @@ import {setAvatar} from '../../../store/activateSlice'
 import {activate} from '../../../http/index'
 import { setAuth } from '../../../store/authSlice'
 
+import Loader from '../../../components/shared/Loader/Loader'
+
 const StepAvatar = ({onNext}) => {
   const {name,avatar}=useSelector(state=>state.activate)
   const [image,setImage]=useState('/images/monkey-avatar.png')
+  const [loading,setLoading]=useState(false)
   const dispatch=useDispatch()
 
   const captureImage=(e)=>{
@@ -30,19 +33,29 @@ const StepAvatar = ({onNext}) => {
   }
 
   const submit=async ()=>{
+    if(!name || !avatar){
+      return;
+    }
+    setLoading(true)
     try{
       const {data}=await activate({name,avatar})
       if(data.auth){
         dispatch(setAuth(data))
       }
       console.log(data)
+      // setLoading(false)
     }catch(err){
         console.log(err)
+        // setLoading(false)
+    }finally{
+      setLoading(false)
     }
     // onNext()
   }
-  return (
-    <>
+  
+    return (
+      loading?<Loader message="loading" />:
+      <>
         <Card title={`Okay ${name}!`} logo='TopeWala'>
             {/* <TextInput value={fullName} onChange={(e)=>setFullName(e.target.value)}></TextInput> */}
             <p className={styles.subHeading}>How is this profile pic</p>
@@ -61,6 +74,7 @@ const StepAvatar = ({onNext}) => {
             
         </Card>
     </>
+    
   )
 }
 

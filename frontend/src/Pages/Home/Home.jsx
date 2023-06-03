@@ -12,11 +12,11 @@ const Home = () => {
   }
   return (
     <div className={styles.classWrapper}>
-        <Card title='Welcome to Codershouse!' logo='logo'>
+        <Card title='Welcome to Codershous!' logo='logo'>
             <p className={styles.text}>A place where collaborators can talk with each other in real time and execute projects together</p>
             <Button text='Lets Go' icon='arrow' onClick={startRegister}></Button>
             <div style={{marginTop:'5px'}}>
-                <span style={{fontWeight: '300'}}>Already have an accont? </span>
+                <span style={{fontWeight: '300'}}>Already have an account? </span>
                 {/* <Link style={{textDecoration:'none',marginLeft:'5px'}} to='/login'>
                     <span>Login</span>
                 </Link> */}
