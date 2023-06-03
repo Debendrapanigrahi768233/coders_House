@@ -10,7 +10,8 @@ const ACTIONS = require("./actions");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
   cors: {
-    origin: ["http://localhost:3000", "http://127.0.0.1:3000"],
+    // origin: ["http://localhost:3000", "http://127.0.0.1:3000"],
+    origin: process.env.FRONT_URL,
     methods: ["GET", "POST"],
   },
 });
@@ -19,7 +20,8 @@ const io = require("socket.io")(server, {
 app.use(cookieParser());
 const optionCors = {
   credentials: true,
-  origin: ["http://127.0.0.1:3000", "http://localhost:3000"],
+  origin: [process.env.FRONT_URL],
+  // origin: ["http://127.0.0.1:3000", "http://localhost:3000"],
 };
 app.use(cors(optionCors));
 
